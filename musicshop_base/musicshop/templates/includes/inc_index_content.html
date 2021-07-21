@@ -1,0 +1,34 @@
+{% load static %}
+<div class="featured">
+    <div class="featured-menu">
+        <a class="active" href="#">Популярные</a><a href="#">Новинки</a>
+    </div>
+
+    <div class="tab-content">
+        {% for product in popular_products %}
+            <div class="block" id="popular-products">
+                <a href="{% url 'products:product' product.pk %}">
+                    <img src="/media/{{ product.image }}" alt="">
+                    <div class="text">
+                        <img src="{% static 'img/icon-hover.png' %}" alt="img">
+                        <h4>{{ product.name }}</h4>
+                        <p>{{ product.short_desc|title }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+{#        {% for product in new_products %}#}
+{#            <div class="block" id="new-products">#}
+{#                <a href="{% url 'products:product' product.pk %}">#}
+{#                    <img src="/media/{{ product.image }}" alt="">#}
+{#                    <div class="text">#}
+{#                        <img src="{% static 'img/icon-hover.png' %}" alt="img">#}
+{#                        <h4>{{ product.name }}</h4>#}
+{#                        <p>{{ product.short_desc|title }}</p>#}
+{#                    </div>#}
+{#                </a>#}
+{#            </div>#}
+{#        {% endfor %}#}
+
+    </div>
+</div>

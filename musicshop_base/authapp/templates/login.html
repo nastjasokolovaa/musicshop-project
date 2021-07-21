@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <div class="hero">
+        {% include 'includes/inc_main_menu.html' %}
+        <h1>{{ title|title }}</h1>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <div class="login-container">
+        <div class="row">
+            <div class="mx-auto col-3">
+                <form class="form-horizontal" action="{% url 'auth:login' %}" method="post" >
+                    {% csrf_token %}
+                    {% if next %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                    {% endif %}
+                    {{ login_form.as_p }}
+                    <button type="submit" class="button-order-edit">Войти</button>
+                </form>
+            </div>
+        </div>
+        <button type="submit" class="button-order-edit">
+            <a href="{% url 'auth:register' %}" class="login_p">
+                зарегистрироваться
+            </a>
+        </button>
+        <button type="submit" class="button-order-edit">
+            <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/">
+                Вход через VK
+            </a>
+        </button>
+    </div>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        <h1 class="mt-4">Продукты
+            {% if category %}
+                : <span>{{ category.name }}</span>
+            {% endif %}
+        </h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fa fa-table mr-1"></i>
+                <a href="{% url 'adminapp:categories' %}">Категории</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Изображение</th>
+                            <th>Имя</th>
+                            <th>Описание</th>
+                            <th>Количество</th>
+                            <th>Цена</th>
+                            <th>Подробнее</th>
+                            <th>Редактировать</th>
+                            <th>Удалить</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Изображение</th>
+                            <th>Имя</th>
+                            <th>Описание</th>
+                            <th>Количество</th>
+                            <th>Цена</th>
+                            <th>Подробнее</th>
+                            <th>Редактировать</th>
+                            <th>Удалить</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for object in objects %}
+                            <tr {% if not object.is_active %} style="opacity: 0.5;" {% endif %}>
+                                <td>
+                                    <img src="/media/{{ object.image|default:'products_images/default.jpg' }}"
+                                     alt="{{ object.name }}" style="width:50px;">
+                                </td>
+                                <td>
+                                    {{ object.name|title }}
+                                </td>
+                                <td>
+                                    {{ object.short_desc|title }}
+                                </td>
+                                <td>{{ object.quantity }}</td>
+                                <td>{{ object.price }} руб</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary">
+                                        <a class="text-white" href={% url 'adminapp:product_read' object.pk %}>
+                                            подробнее
+                                        </a>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning">
+                                        <a class="text-dark" href={% url 'adminapp:product_update' object.pk %}>
+                                            редактировать
+                                        </a>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger">
+                                        <a class="text-white" href={% url 'adminapp:product_delete' object.pk %}>
+                                            удалить
+                                        </a>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor%}
+                        </tbody>
+                    </table>
+                    <div class="card-footer">
+                        <button class="btn btn-success">
+                            <a class="text-white" href="{% url 'adminapp:product_create' category.pk %}">
+                                новый продукт
+                            </a>
+                        </button>
+                    </div>
+                    {% if is_paginated %}
+                        <div class="paginator">
+                            {% if objects.has_previous %}
+                                <a href="?page={{ objects.previous_page_number }}">
+                                    <
+                                </a>
+                            {% endif %}
+                            <span class="current">
+                                Страница {{ objects.number }} из {{ objects.paginator.num_pages }}
+                            </span>
+                            {% if objects.has_next %}
+                                <a href="?page={{ objects.next_page_number }}">
+                                    >
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

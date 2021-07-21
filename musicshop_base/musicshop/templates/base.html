@@ -1,0 +1,30 @@
+<!doctype html>
+{% load static %}
+
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}
+            {{title|title}}
+        {% endblock %}
+    </title>
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'style-music-shop.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+    {% endblock %}
+    {% block js %}
+    {% endblock %}
+</head>
+
+<body>
+    <div class="container">
+        {% block header %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+    </div>
+    <hr>
+    {% include 'includes/inc_footer.html' %}
+</body>
+</html>

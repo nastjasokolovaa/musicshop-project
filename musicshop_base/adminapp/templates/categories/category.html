@@ -1,0 +1,87 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        <h1 class="mt-4">Категория
+            {% if category %}
+                : <span>{{ category.name }}</span>
+            {% endif %}</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fa fa-table mr-1"></i>
+                <a href="{% url 'adminapp:categories' %}">Категории</a>
+            </div>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Категория</th>
+                    <th>Описание</th>
+                    <th>Номер категории</th>
+                    <th>Ссылка на товары</th>
+                    <th>Дата создания</th>
+                    <th>Дата редактирования</th>
+                    <th>Активна/не активна</th>
+
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Категория</th>
+                    <th>Описание</th>
+                    <th>Номер категории</th>
+                    <th>Ссылка на товары</th>
+                    <th>Дата создания</th>
+                    <th>Дата редактирования</th>
+                    <th>Активна/не активна</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>
+                            {{ category.name|title }}
+                        </td>
+                        <td>
+                            {{ category.description }}
+                        </td>
+                        <td>
+                            {{ category.pk }}
+                        </td>
+                        <td>
+                            <button class="btn btn-primary">
+                                <a class="text-white" href={% url 'adminapp:products' category.pk %}>
+                                    товары категории
+                                </a>
+                            </button>
+                        </td>
+                        <td>
+                            {{ category.created_at }}
+                        </td>
+                        <td>
+                            {{ category.updated_at }}
+                        </td>
+                        <td>
+                            {% if category.is_active %}
+                                <i class="fa fa-check-circle" style="color: dodgerblue"></i>
+                            {% else %}
+                                <i class="fa fa-times-circle" style="color: red"></i>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="card-footer">
+                <button class="btn btn-warning">
+                    <a class="text-dark" href={% url 'adminapp:category_update' category.pk %}>
+                        редактировать
+                    </a>
+                </button>
+                <button class="btn btn-danger">
+                    <a class="text-white" href={% url 'adminapp:category_delete' category.pk %}>
+                        удалить
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

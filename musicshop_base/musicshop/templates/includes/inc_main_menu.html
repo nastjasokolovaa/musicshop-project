@@ -1,0 +1,62 @@
+<div class="header clearfix">
+    <div class="logo">
+        <a href="{% url 'index' %}" ></a>
+    </div>
+    <div class="div_for_menu">
+        <ul class="menu">
+            {% for link in links %}
+                <li>
+                    <a href="{% url link.href %}"
+                       class="{% if request.resolver_match.url_name == link.href %}
+                                active
+                              {% endif %}">
+                        {{ link.name }}
+                    </a>
+                </li>
+            {% endfor %}
+            {% for auth in auth %}
+                {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url auth.href %}"
+                           class="{% if request.resolver_match.url_name == auth.href %}
+                               active
+                                  {% endif %}">
+                            {{ auth.name }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if user.is_superuser %}
+                <li>
+                    <a href="{% url 'admin_staff:users' %}">
+                        админка
+                    </a>
+                </li>
+
+            {% endif %}
+            <li>
+                <a href="{#% url 'order:list' %#}">заказы</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'auth:logout' %}">выйти</a>
+                {% else %}
+                    <a href="{% url 'auth:login' %}">войти</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    <div class="div_for_search">
+        <a href="#" class="search"></a>
+    </div>
+    <div class="div_for_basket">
+        {% if basket %}
+            <a href="{% url 'basket:basket' %}" class="fa fa-shopping-basket basket">
+                <span id="basket_cost">{{ basket.0.total_cost|floatformat:0 }} руб</span>
+                <span id="basket_quantity">({{ basket.0.total_quantity }} шт.)</span>
+            </a>
+        {% else %}
+            <a href="{% url 'basket:basket' %}" class="fa fa-shopping-basket basket">
+                товаров нет
+            </a>
+        {% endif %}
+    </div>
+</div>

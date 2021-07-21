@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <div class="hero-white">
+        {% include 'includes/inc_main_menu.html' %}
+    </div>
+{% endblock %}
+{% block content %}
+    {% include 'includes/inc_category_menu.html' %}
+    {% include 'includes/inc_products_content.html' %}
+{% endblock %}

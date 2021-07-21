@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <div class="hero">
+        {% include 'includes/inc_main_menu.html' %}
+        <h1>{{ title|title }}</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="register_container">
+        <form class="form-horizontal" action="{% url 'auth:register' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ register_form.as_p }}
+            <input class="button-order-edit" type="submit" value="зарегистрироваться">
+        </form>
+    </div>
+
+{% endblock %}

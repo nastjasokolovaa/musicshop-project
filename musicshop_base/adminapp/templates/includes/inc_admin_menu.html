@@ -1,0 +1,58 @@
+<header class="header" id="header">
+    <div class="header_img">
+        <a href="{% url 'auth:edit' %}">
+            {% if not user.avatar %}
+                <i class="fas fa-user-circle icon fa-10x"></i>
+            {% else %}
+                <img src="/media/{{ user.avatar }}">
+            {% endif %}
+        </a>
+    </div>
+</header>
+<div class="adminka-main-menu-1">
+    <div class="adminka-main-menu-2">
+        <div class="nav_link">
+            <button type="button" class="btn btn-outline-success">
+                <a href="{% url 'index' %}" class="nav_logo">
+                    <i class='bx bx-layer nav_logo-icon text-dark'></i>
+                    <span class="text-dark">Adminka</span>
+                </a>
+            </button>
+        </div>
+        <div class="nav_link">
+            <button type="button" class="btn btn-outline-success">
+                <a href="{% url 'admin_staff:categories' %}"
+                   class="{% if request.resolver_match.url_name == 'categories' %}
+                        active
+                    {% endif %} text-dark">
+                    <i class='bx bx-grid-alt nav_icon'></i>
+                    <span class="nav_name">Категории товаров</span>
+                </a>
+            </button>
+        </div>
+        <div class="nav_link">
+            <button type="button" class="btn btn-outline-success">
+                <a href="{% url 'admin_staff:users' %}"
+                   class="{% if request.resolver_match.url_name == 'users' %}
+                        active
+                    {% endif %} text-dark">
+                    <i class='bx bx-user nav_icon'></i>
+                    <span class="nav_name">Пользователи</span>
+                </a>
+            </button>
+        </div>
+    </div>
+    <div>
+        <div class="nav_link">
+            <button type="button" class="btn btn-outline-success">
+                <a href="{% url 'auth:login' %}"
+                   class="{% if request.resolver_match.url_name == 'login' %}
+                        active
+                    {% endif %} text-dark">
+                    <i class='bx bx-log-out nav_icon'></i>
+                    <span class="nav_name">Выход</span>
+                </a>
+            </button>
+        </div>
+    </div>
+</div>

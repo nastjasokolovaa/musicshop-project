@@ -1,0 +1,63 @@
+{% load static %}
+<div><h1>{{ pk_product.name|title }}</h1>
+    <button class="button-order-1">
+        <a href="{% url 'products:category' 0 %}">
+            Вернуться в каталог
+        </a>
+    </button>
+</div>
+    <div class="details-products">
+        <div class="details-slider">
+            <div class="slider-product">
+                <img class="hot_product" src="/media/{{ pk_product.image }}" alt="1">
+            </div>
+            <div class="slider-control">
+                <div class="block">
+                    <a href="#"><img src="/media/{{ pk_product.image }}" alt="">
+                        <div class="text"></div>
+                    </a>
+                </div>
+                <div class="block">
+                    <a href="#"><img src="/media/{{ pk_product.image }}" alt="">
+                        <div class="text"></div>
+                    </a>
+                </div>
+                <div class="block">
+                    <a href="#"><img src="/media/{{ pk_product.image }}" alt="">
+                        <div class="text"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="description">
+            <h3 class="big-bold">{{ pk_product.name }}</h3>
+            <p class="price">{{ pk_product.price }}<span>руб</span></p>
+            <a href="{% url 'basket:basket_add' pk_product.pk %}" class="red-button">
+                заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+            <div class="description-text">
+                <p>{{ pk_product.description }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="related">
+        <div class="title clearfix">
+            <h2>Похожие продукты</h2>
+            <a class="explore" href="#">показать все <img src="{% static 'img/arrow.png' %}" alt=""></a>
+        </div>
+        <div class="related-products clearfix">
+            {% for same_product in related_products %}
+                <div class="block">
+                    <a href="{% url 'products:product' same_product.pk %}">
+                        <img src="/media/{{ same_product.image }}" alt="">
+                        <div class="text">
+                            <img src="{% static 'img/icon-hover.png' %}" alt="img">
+                            <h4>{{ same_product.name }}</h4>
+                            <p>{{ same_product.short_desc|title }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>

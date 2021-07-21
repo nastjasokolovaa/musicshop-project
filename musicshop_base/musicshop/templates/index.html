@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <div class="slider">
+        {% include 'includes/inc_main_menu.html' %}
+        <div class="text-slider">
+            <h3 class="green">Новинки продаж</h3>
+            {% for new in new_products %}
+                <div id="new-product-{{ new.id }}" style="{% if new.id != new_products.0.id %} display: none {% endif %}" >
+                    <h3 class="big">{{ new.name }}</h3>
+                    <p>{{ heading|title }}</p>
+                    <a href="{% url 'basket:basket_add' new.pk %}" class="button-order">заказать <img src="{% static 'img/arrow.png' %}" alt=""></a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="navi">
+            <script>
+                function showBlock(pageButton, idToShow) {
+                    [...document.querySelectorAll('div[id^="new-product-"]')].map(el => {
+                        if (el.id === idToShow) {
+                            document.getElementById(idToShow).style.display='block'
+                            return
+                        }
+                        el.style.display = 'none'
+                    });
+
+                    [...document.querySelectorAll('a[id^="new-nav-"]')].map(el => {
+                        if (el === pageButton) {
+                            pageButton.classList.value = 'active'
+                            return
+                        }
+                        el.classList.value = ''
+                    })
+                    return false
+                }
+            </script>
+            {% for new in new_products %}
+                <a id="new-nav-{{ new.id }}" href="#"
+                    onclick="return showBlock(this, 'new-product-{{ new.id }}')"
+                ></a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    {% include 'includes/inc_index_content.html' %}
+{% endblock %}

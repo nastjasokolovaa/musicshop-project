@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <div class="hero">
+        {% include 'includes/inc_main_menu.html' %}
+        <h1>{{ title|title }}</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Вы успешно активировали аккаунт!</h1>
+        <br>
+    {% else %}
+        <h1>Что-то пошло  не так, аккаунт не удалось активировать</h1>
+    {% endif %}
+    <br>
+    <a href="{% url 'index' %}">На главную</a>
+{% endblock %}
