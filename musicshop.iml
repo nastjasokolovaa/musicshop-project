@@ -30,6 +30,7 @@
         <option value="$MODULE_DIR$/musicshop_base/authapp/templates" />
         <option value="$MODULE_DIR$/musicshop_base/basketapp/templates" />
         <option value="$MODULE_DIR$/musicshop_base/adminapp/templates" />
+        <option value="$MODULE_DIR$/musicshop_base/ordersapp/templates" />
       </list>
     </option>
   </component>

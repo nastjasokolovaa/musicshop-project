@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+    <div class="hero">
+        {% include 'includes/inc_main_menu.html' %}
+        <h1>{{ title|title }}</h1>
+    </div>
+{% endblock %}
+{% block content %}
+    {% include 'ordersapp/includes/inc_order_summary.html' %}
+    <div class="basket_list">
+        {% for item in object.orderitems.select_related %}
+            <div class="order-detail">
+                <img src="/media/{{ item.product.image}}"
+                     alt="{{ item.product.short_desc }}">
+                <span class="category_name">
+                   {{ item.product.category.name }} {{ item.product.name|upper }}
+                </span>
+                <span class="product_price">
+                   {{ item.product.price }}&nbspруб x {{ item.quantity }} шт. = {{ item.get_product_cost }}&nbspруб
+                </span>
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'ordersapp/includes/inc_order_actions.html' %}
+
+{% endblock %}

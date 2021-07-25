@@ -106,8 +106,9 @@
 
 .text-slider {
     position: absolute;
-    margin-top: 288px;
+    margin-top: 150px;
     margin-left: 100px;
+    text-align: center;
 }
 
 .text-slider p {
@@ -117,7 +118,15 @@
     width: 458px;
     line-height: 24px;
 }
+.text-slider img {
+    border-radius: 200px;
+}
 
+.text-slider a {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 .button-order {
     background-color:  #ffffff;
     box-shadow: 0px 2px 4.85px 0.15px rgba(33, 33, 33, 0.35);
@@ -1230,4 +1239,147 @@ ___________________________________
     font-size: 20px;
     font-weight: 700;
     padding: 5px 5px 5px 5px;
+}
+
+.text-center {
+    border: 1px solid black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.order-list-table table {
+    border: 1px solid black;
+}
+
+.order-list-table th {
+    border: 1px solid black;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.tbody-td td {
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.order-summary {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-summary .h4 {
+    padding-bottom: 5px;
+}
+
+.button-order-action {
+    background-color:  #ffffff;
+    box-shadow: 0px 2px 4.85px 0.15px rgba(33, 33, 33, 0.35);
+    width: 250px;
+    height: 45px;
+    display: block;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 22px;
+    text-decoration: none;
+    color:  #212121;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 45px;
+    margin-top: 32px;
+    letter-spacing: 1px;
+}
+
+.order-table td {
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-right: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formset_row tr {
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-right: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table-bordered td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid black;
+}
+
+.button-order-action-table {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4.85px 0.15px rgb(33, 33, 33, 0.35);
+    height: 40px;
+    display: block;
+    text-transform: uppercase;
+    border-radius: 22px;
+    text-decoration: none;
+    color: #212121;
+    font-weight: 700;
+    line-height: 45px;
+}
+
+.order-detail {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+}
+
+.order-detail img {
+    width: 300px;
+}
+
+.order-detail span {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.formset_row input {
+    height: 20px;
+}
+
+.formset_td select {
+    height: 25px;
+}
+
+.formset_row a {
+    margin-left: 50px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4.85px 0.15px rgb(33, 33, 33, 0.35);
+    display: block;
+    width: 100px;
+    text-transform: uppercase;
+    border-radius: 22px;
+    text-decoration: none;
+    color: #212121;
+    font-weight: 700;
+    line-height: 35px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.add-row {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4.85px 0.15px rgb(33, 33, 33, 0.35);
+    display: block;
+    width: 200px;
+    text-transform: uppercase;
+    border-radius: 22px;
+    text-decoration: none;
+    color: #212121;
+    font-weight: 700;
+    line-height: 35px;
+    font-size: 15px;
+    text-align: center;
 }

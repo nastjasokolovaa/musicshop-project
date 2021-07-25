@@ -9,7 +9,7 @@
             {% for new in new_products %}
                 <div id="new-product-{{ new.id }}" style="{% if new.id != new_products.0.id %} display: none {% endif %}" >
                     <h3 class="big">{{ new.name }}</h3>
-                    <p>{{ heading|title }}</p>
+                    <img src="/media/{{ new.image }}" alt="1">
                     <a href="{% url 'basket:basket_add' new.pk %}" class="button-order">заказать <img src="{% static 'img/arrow.png' %}" alt=""></a>
                 </div>
             {% endfor %}

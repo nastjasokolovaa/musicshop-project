@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block header %}
+    <div class="hero">
+        {% include 'includes/inc_main_menu.html' %}
+        <h1>{{ title|title }}</h1>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="text-center h2 heder">
+    Ваши заказы, {% if user.first_name %} {{ user.first_name }}{% else %} Пользователь{% endif %}
+    </div>
+    <div class="order-list-table">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Создан</th>
+                <th>Обновлен</th>
+                <th>Статус</th>
+                <th>Подробнее</th>
+                <th>Редактировать</th>
+                <th>Удалить</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Создан</th>
+                <th>Обновлен</th>
+                <th>Статус</th>
+                <th>Подробнее</th>
+                <th>Редактировать</th>
+                <th>Удалить</th>
+            </tr>
+            </tfoot>
+            <tbody class="tbody-td">
+                {% for item in object %}
+                    {% if item.is_active %}
+                        <tr>
+                            <td>{{ item.pk }}</td>
+                            <td>{{ item.created_at|date:"d.m.Y H:i:s" }}</td>
+                            <td>{{ item.update_at|date:"d.m.Y H:i:s" }}</td>
+                            <td>{{ item.get_status_display }}</td>
+                            <td>
+                                <a class="button-order-action-table" href="{% url 'ordersapp:detail' item.pk %}">
+                                    посмотреть</a>
+                            </td>
+                            <td>
+                                {% if item.status == 'FM' %}
+                                    <a class="button-order-action-table" href="{% url 'ordersapp:update' item.pk %}">
+                                        редактировать</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if item.status == 'FM' %}
+                                    <a class="button-order-action-table" href="{% url 'ordersapp:delete' item.pk %}">
+                                        удалить</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="order-btn">
+        <a class="button-order" href={% url 'ordersapp:create' %}>
+            создать
+        </a>
+        <a class="button-order" href={% url 'index' %}>
+            на главную
+        </a>
+    </div>
+{% endblock %}

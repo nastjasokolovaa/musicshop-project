@@ -39,7 +39,7 @@ urlpatterns = [
     path('basket/', include('basketapp.urls', namespace='basket')),
     path('', include('social_django.urls', namespace='social')),
     path('admin_staff/', include('adminapp.urls', namespace='admin_staff')),
-    # path('order/', include('ordersapp.urls', namespace='order')),
+    path('order/', include('ordersapp.urls', namespace='order')),
 ]
 
 

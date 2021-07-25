@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'authapp',
     'basketapp',
     'adminapp',
+    'ordersapp',
 
 ]
 
@@ -192,3 +193,12 @@ SOCIAL_AUTH_VK_OAUTH2_KEY = VK['SOCIAL_AUTH_VK_OAUTH2_KEY']
 SOCIAL_AUTH_VK_OAUTH2_SECRET = VK['SOCIAL_AUTH_VK_OAUTH2_SECRET']
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION': '127.0.0.1:11211',
+#     }
+# }
+#
+# LOW_CACHE = True
