@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-8e2kl%2k-=$hnq!z#=qm=oa#^)cgjm6$k8e9_lkdu(w%ha5-%a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'authapp.ShopUser'
 
 # Application definition
