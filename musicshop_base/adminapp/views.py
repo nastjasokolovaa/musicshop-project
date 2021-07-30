@@ -246,9 +246,9 @@ class ProductUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        category = ProductCategory.objects.filter(id=self.kwargs['pk']).first()
+        product = Product.objects.filter(id=self.kwargs['pk']).first()
         context['title'] = 'админка/создание продукта'
-        context['category'] = category
+        context['category'] = product.category
         return context
 
 

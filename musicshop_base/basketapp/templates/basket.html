@@ -21,13 +21,16 @@
                         В корзине {{ basket.0.total_quantity }} товаров общей стоимостью
                         {{ basket.0.total_cost }} руб
                     </div>
-                    <div>
-                        <button class="button-order-edit">
-                            <a href="{% url 'basket:basket_remove_all' %}" class="">
-                                Очистить корзину
-                            </a>
-                        </button>
-                    </div>
+                    <button class="button-order-edit">
+                        <a href={% url 'ordersapp:create' %}>
+                            Создать заказ
+                        </a>
+                    </button>
+                    <button class="button-order-edit">
+                        <a href="{% url 'basket:basket_remove_all' %}" class="">
+                            Очистить корзину
+                        </a>
+                    </button>
                 {% else %}
                     <h4>Корзина пуста</h4>
                 {% endif %}

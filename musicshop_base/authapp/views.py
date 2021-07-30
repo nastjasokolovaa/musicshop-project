@@ -96,6 +96,8 @@ def send_verify_link(user):
 
 
 def verify(request, email, key):
+    title = 'Верификация'
+    links_menu = get_links_menu(request=request, title=title)
     user = ShopUser.objects.filter(email=email).first()
     if user and user.activation_key == key and not user.is_activation_key_expired():
         user.is_active = True
@@ -103,4 +105,9 @@ def verify(request, email, key):
         user.activation_key_created = None
         user.save()
         auth.login(request, user)
-    return render(request, 'verify.html')
+    links_menu.update(
+        {
+            'title': title,
+        }
+    )
+    return render(request, 'verify.html', links_menu)

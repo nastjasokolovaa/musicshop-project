@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponseNotFound, JsonResponse
+from django.http import HttpResponseRedirect, HttpResponseNotFound, JsonResponse, HttpResponseGone
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -24,13 +24,15 @@ def basket_add(request, pk):
         return HttpResponseRedirect(reverse('products:product', args=[pk]))
     product = get_object_or_404(Product, pk=pk)
 
+    if product.quantity == 0:
+        return JsonResponse({'error': 'Товар закончился'}, status=410)
+
     basket = Basket.objects.filter(user=request.user, product=product).first()
     if not basket:
         basket = Basket(user=request.user, product=product)
 
     basket.quantity += 1
     basket.save()
-
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 

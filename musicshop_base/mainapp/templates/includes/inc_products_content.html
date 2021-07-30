@@ -29,12 +29,20 @@
         <h3 class="red">горячее предложение</h3>
         <p class="old_price">{{ hot_product.old_price }}<span>руб</span></p>
         <p class="price">{{ hot_product.price }}<span>руб</span></p>
-        <a href="{% url 'basket:basket_add' hot_product.pk %}" class="red-button">
+        <a onclick="return addToBasket('{% url 'basket:basket_add' hot_product.pk %}')" class="red-button">
+{#        <a href="{% url 'basket:basket_add' hot_product.pk  %}" class="red-button">#}
             заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </a>
-        <div class="description-text">
-            <p>{{ hot_product.description }}</p>
-        </div>
+        {% if hot_product.quantity == 0 %}
+            <div class="description-text">
+                <p>Товар закончился!</p>
+            </div>
+        {% else %}
+            <div class="description-text">
+                <p>{{ hot_product.description }}</p>
+            </div>
+        {% endif %}
+
     </div>
 </div>
 

@@ -21,7 +21,7 @@
         </div>
         <div class="nav_link">
             <button type="button" class="btn btn-outline-success">
-                <a href="{% url 'admin_staff:categories' %}"
+                <a href="{% url 'adminapp:categories' %}"
                    class="{% if request.resolver_match.url_name == 'categories' %}
                         active
                     {% endif %} text-dark">
@@ -32,7 +32,7 @@
         </div>
         <div class="nav_link">
             <button type="button" class="btn btn-outline-success">
-                <a href="{% url 'admin_staff:users' %}"
+                <a href="{% url 'adminapp:users' %}"
                    class="{% if request.resolver_match.url_name == 'users' %}
                         active
                     {% endif %} text-dark">

@@ -31,9 +31,53 @@
     top: 60px;
 }
 
-/*.menu li {*/
-/*    top: 60px;*/
-/*}*/
+.menu li:hover {
+    background: whitesmoke;
+    cursor: pointer;
+}
+.submenu {
+    background: whitesmoke;
+    visibility: hidden;
+    position: absolute;
+    padding-left: 0px;
+    display: none;
+    list-style-type: none;
+    text-align: center;
+    z-index: 5;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: .3s ease-in-out;
+}
+.submenu li {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.menu li:hover > .submenu,
+.menu li .submenu:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    padding-top: 5px;
+    border: 1px solid black;
+    transform: translateY(0px);
+
+}
+.submenu a:hover {
+    color: #212121;
+    font-weight: 700;
+    border-bottom: 1px solid #212121;
+}
+
+.menu li .submenu li {
+    clear: both;
+    /*width: 100%;*/
+}
+.menu a:hover {
+    color: #212121;
+    font-weight: 700;
+}
+
 .menu a {
     color: #8c8c8c;
     font-size: 14px;
@@ -41,7 +85,7 @@
     text-align: right;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 10px 13px;
+    margin: 10px 5px 0px 15px;
 }
 
 .menu .active {
@@ -89,8 +133,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    height: 120px;
-    line-height: 100px;
+    height: 100px;
+    line-height: 50px;
 }
 
 .slider {
@@ -863,43 +907,38 @@ ______________________________________________
     padding-left: 360px;
 }
 
-.links-menu {
-    margin:	27px auto 0px;
-    position: absolute;
-}
 
+/*.links-menu li {*/
+/*    float: left;*/
+/*    list-style-type: none;*/
+/*    padding-right: 42px;*/
+/*}*/
+/*.links-menu li a {*/
+/*    text-decoration: none;*/
+/*    color:  #6c6c6c;*/
+/*    font-size: 18px;*/
+/*    font-weight: 700;*/
+/*    text-transform: uppercase;*/
+/*}*/
 
-.links-menu li {
-    float: left;
-    list-style-type: none;
-    padding-right: 42px;
-}
-.links-menu li a {
-    text-decoration: none;
-    color:  #6c6c6c;
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.links-menu .active {
-    color:  #212121;
-    font-size: 18px;
-    font-weight: 700;
-    border-bottom: 3px solid #212121;
-}
-.links-menu a:hover {
-    color:  #212121;
-    font-size: 18px;
-    font-weight: 700;
-    border-bottom: 3px solid #212121;
-}
-.links-menu a:active {
-    color:  #6c6c6c;
-    font-size: 18px;
-    font-weight: 700;
-    border-bottom: 3px solid #212121;
-}
+/*.links-menu .active {*/
+/*    color:  #212121;*/
+/*    font-size: 18px;*/
+/*    font-weight: 700;*/
+/*    border-bottom: 3px solid #212121;*/
+/*}*/
+/*.links-menu a:hover {*/
+/*    color:  #212121;*/
+/*    font-size: 18px;*/
+/*    font-weight: 700;*/
+/*    border-bottom: 3px solid #212121;*/
+/*}*/
+/*.links-menu a:active {*/
+/*    color:  #6c6c6c;*/
+/*    font-size: 18px;*/
+/*    font-weight: 700;*/
+/*    border-bottom: 3px solid #212121;*/
+/*}*/
 .div_for_categories{
     width: 100vw;
 }
@@ -1073,8 +1112,8 @@ ______________________________________________
 }
 .related-products a .text {
     display: none;
-    height: 368px;
-    width: 368px;
+    height: 280px;
+    width: 280px;
     background-color: #ffffff;
     opacity: 0.9;
     position: absolute;
@@ -1107,14 +1146,11 @@ ______________________________________________
 ______________________________________
 
 
-.avatar {
-    margin-left: auto;
-    margin-right: auto;
-}
 
-.edit_form {
-    margin-left: auto;
-    margin-right: auto;
+_______________________________________
+
+.edit_form th {
+    width: 100px;
 }
 
 .button-order-edit {
@@ -1149,7 +1185,6 @@ ______________________________________
 .edit_container {
     margin-left: auto;
     margin-right: auto;
-    width: 50vw;
     display: flex;
     justify-content: space-around;
 }
@@ -1162,7 +1197,19 @@ ______________________________________
     justify-content: space-around;
 }
 
+.rounded-circle {
+    border-radius: 500px;
+    width: 300px;
+}
+ .form-control {
+     height: 25px;
+     width: 400px;
+ }
 
+#id_about_me {
+    height: 100px;
+    width: 400px;
+}
 ___________________________________
 
 .basket_container {

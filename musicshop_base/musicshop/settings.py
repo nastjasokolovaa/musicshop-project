@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-8e2kl%2k-=$hnq!z#=qm=oa#^)cgjm6$k8e9_lkdu(w%ha5-%a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = []
 AUTH_USER_MODEL = 'authapp.ShopUser'
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'basketapp',
     'adminapp',
     'ordersapp',
+    'social_django',
 
 ]
 
@@ -70,8 +71,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'mainapp.context_processors.basket',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -83,13 +84,19 @@ WSGI_APPLICATION = 'musicshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'chicagostore',
+        'USER': 'postgres',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -147,16 +154,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/auth/login/'
-LOGIN_ERROR_URL = '/'
-SOCIAL_AUTH_VK_OAUTH2_IGNORE_DEFAULT_SCOPE = True
-SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
-
 DOMAIN_NAME = 'http://localhost:8000'
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'django@gb.local'
+EMAIL_HOST_USER = 'chicago@musicstore.local'
 EMAIL_HOST_PASSWORD = 'geekbrains'
 EMAIL_USE_SSL = False
 
@@ -171,6 +173,15 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.vk.VKOAuth2',
 )
+with open('musicshop/vk.json', 'r') as f:
+    VK = json.load(f)
+SOCIAL_AUTH_VK_OAUTH2_KEY = VK['SOCIAL_AUTH_VK_OAUTH2_KEY']
+SOCIAL_AUTH_VK_OAUTH2_SECRET = VK['SOCIAL_AUTH_VK_OAUTH2_SECRET']
+
+# LOGIN_URL = '/auth/login/'
+# LOGIN_ERROR_URL = '/'
+# SOCIAL_AUTH_VK_OAUTH2_IGNORE_DEFAULT_SCOPE = True
+# SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
@@ -184,14 +195,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 
-# SOCIAL_AUTH_VK_OAUTH2_KEY = "7885490"
-# SOCIAL_AUTH_VK_OAUTH2_SECRET = "yrrhCisCGs1TQTw0Kgyt"
-
-with open('musicshop/vk.json', 'r') as f:
-    VK = json.load(f)
-SOCIAL_AUTH_VK_OAUTH2_KEY = VK['SOCIAL_AUTH_VK_OAUTH2_KEY']
-SOCIAL_AUTH_VK_OAUTH2_SECRET = VK['SOCIAL_AUTH_VK_OAUTH2_SECRET']
-
+#
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 # CACHES = {

@@ -1,6 +1,7 @@
+{% load static %}
 <div class="header clearfix">
     <div class="logo">
-        <a href="{% url 'index' %}" ></a>
+        <a href="{% url 'index' %}"></a>
     </div>
     <div class="div_for_menu">
         <ul class="menu">
@@ -9,9 +10,34 @@
                     <a href="{% url link.href %}"
                        class="{% if request.resolver_match.url_name == link.href %}
                                 active
-                              {% endif %}">
+                              {% endif %}
+                            {% if link.href == 'mainapp:products' %}
+                            fa fa-angle-down
+                            {% endif %}">
                         {{ link.name }}
                     </a>
+                {% if link.href == 'mainapp:products' %}
+                    <ul class="links-menu submenu">
+                        <li>
+                            <a href="{% url 'products:category' 0 %}"
+                               class="{% if request.resolver_match.kwargs.pk == 0 %}
+                                active
+                                {% endif %}">
+                                все
+                            </a>
+                        </li>
+                        {% for category in categories %}
+                            <li>
+                                <a href="{% url 'products:category' category.pk %}"
+                                   class="{% if request.resolver_match.kwargs.pk == category.pk %}
+                                        active
+                                    {% endif %}">
+                                    {{ category.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 </li>
             {% endfor %}
             {% for auth in auth %}
@@ -20,22 +46,32 @@
                         <a href="{% url auth.href %}"
                            class="{% if request.resolver_match.url_name == auth.href %}
                                active
-                                  {% endif %}">
-                            {{ auth.name }}
+                                  {% endif %} fa fa-angle-down">
+                            {{ auth.name.first_name }}
                         </a>
+                        <ul class="submenu">
+                            {% if user.is_superuser %}
+                                <li>
+                                    <a href="{% url 'admin_staff:users' %}"
+                                       class="{% if request.resolver_match.url_name == link.href %}
+                                            active
+                                        {% endif %}">
+                                        админка
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'order:list' %}"
+                                       class="{% if request.resolver_match.url_name == link.href %}
+                                            active
+                                        {% endif %}">
+                                       заказы</a>
+                                </li>
+                            {% endif %}
+                        </ul>
                     </li>
                 {% endif %}
             {% endfor %}
-            {% if user.is_superuser %}
-                <li>
-                    <a href="{% url 'admin_staff:users' %}">
-                        админка
-                    </a>
-                </li>
-
-            {% endif %}
             <li>
-                <a href="{% url 'order:list' %}">заказы</a>
                 {% if user.is_authenticated %}
                     <a href="{% url 'auth:logout' %}">выйти</a>
                 {% else %}

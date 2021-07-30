@@ -26,7 +26,7 @@
                     });
 
                     [...document.querySelectorAll('a[id^="new-nav-"]')].map(el => {
-                        if (el === pageButton) {
+                        if (el === 'new-product-{{ new.id }}') {
                             pageButton.classList.value = 'active'
                             return
                         }
