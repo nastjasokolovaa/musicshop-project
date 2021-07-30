@@ -25,4 +25,3 @@ urllib3==1.26.5
 django-debug-toolbar
 django-debug-toolbar-template-profiler
 django-extensions
-pydotplus
