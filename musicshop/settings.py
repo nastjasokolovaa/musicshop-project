@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'musicshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chicagostore',
+        'NAME': 'chicago',
         'USER': 'postgres',
     }
 }
