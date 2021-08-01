@@ -55,16 +55,14 @@ def products(request, pk=None, page=1):
 
 def product(request, pk):
     title = 'Страница продукта'
-    categories = ProductCategory.objects.all()
+    links_menu = get_links_menu(request=request, title=title)
     pk_product = get_object_or_404(Product, pk=pk)
     related_products = get_same_products(pk_product)
-    links_menu = {
-        'links': list(get_links()),
-        'auth': list(get_auth(request)),
-        'categories': categories,
-        'title': title,
-        'pk_product': pk_product,
-        'related_products': related_products,
-    }
+    links_menu.update(
+        {
+            'pk_product': pk_product,
+            'related_products': related_products,
+        }
+    )
 
     return render(request, 'product.html', context=links_menu)
