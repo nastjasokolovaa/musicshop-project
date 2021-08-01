@@ -32,7 +32,7 @@ urlpatterns = [
     path('', main, name='index'),
     path('admin/', admin.site.urls),
     path('contact/', contact, name='contact'),
-    path('products/', include(urls, namespace='products')),
+    path('products/', include('mainapp.urls', namespace='products')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('basket/', include('basketapp.urls', namespace='basket')),
     path('', include('social_django.urls', namespace='social')),
