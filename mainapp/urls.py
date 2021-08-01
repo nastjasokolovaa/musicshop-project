@@ -15,8 +15,6 @@ Including another URLconf
 """
 
 from django.urls import path, include
-from django.views.generic import RedirectView
-
 from musicshop.views import contact
 from .views import products, product
 
