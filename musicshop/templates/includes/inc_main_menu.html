@@ -59,14 +59,15 @@
                                         админка
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="{% url 'order:list' %}"
-                                       class="{% if request.resolver_match.url_name == link.href %}
+
+                            {% endif %}
+                            <li>
+                                <a href="{% url 'order:list' %}"
+                                   class="{% if request.resolver_match.url_name == link.href %}
                                             active
                                         {% endif %}">
-                                       заказы</a>
-                                </li>
-                            {% endif %}
+                                    заказы</a>
+                            </li>
                         </ul>
                     </li>
                 {% endif %}
