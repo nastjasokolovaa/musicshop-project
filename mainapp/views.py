@@ -55,7 +55,6 @@ def products(request, pk=None, page=1):
         return render(request, 'products.html', context=links_menu)
 
 
-@login_required
 def product(request, pk):
     title = 'Страница продукта'
     categories = ProductCategory.objects.all()
