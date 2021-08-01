@@ -119,6 +119,11 @@
     font-weight: 700;
 }
 
+.basket_list_main {
+    display: flex;
+    flex-direction: column;
+}
+
 .clearfix{
     display: flex;
     justify-content: flex-start;
