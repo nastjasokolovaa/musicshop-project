@@ -18,8 +18,8 @@
                 </div>
                 {% if basket %}
                     <div class="basket_summary">
-                        В корзине {{ basket.0.total_quantity }} товаров общей стоимостью
-                        {{ basket.0.total_cost|floatformat:0 }} руб
+                        <span id="basket_quantity">В корзине {{ basket.0.total_quantity }} товаров общей стоимостью</span>
+                        <span id="basket_cost">{{ basket.0.total_cost|floatformat:0 }} руб</span>
                     </div>
                     <button class="button-order-edit">
                         <a href={% url 'ordersapp:create' %}>
